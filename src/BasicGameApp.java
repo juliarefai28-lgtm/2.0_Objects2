@@ -15,6 +15,7 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
+import java.text.AttributedString;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -40,11 +41,12 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image sharkPic;
     public Image fishPic;
+    public Image backgroundPic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
-    private Astronaut shark;
-    private Astronaut fish;
+    private Shark shark;
+    private Fish fish;
 
 
    // Main method definition
@@ -67,7 +69,9 @@ public class BasicGameApp implements Runnable {
       //create (construct) the objects needed for the game and load up 
 		sharkPic = Toolkit.getDefaultToolkit().getImage("Shark.png"); //load the picture
         fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png"); //load the picture
-        shark = new Astronaut(WIDTH / 2, HEIGHT / 2);
+        backgroundPic = Toolkit.getDefaultToolkit().getImage("Background.png");
+        shark = new Shark(WIDTH / 2, HEIGHT / 2);
+        fish = new Fish(WIDTH / 2, HEIGHT / 2);
 
 
 	}// BasicGameApp()
@@ -92,12 +96,10 @@ public class BasicGameApp implements Runnable {
 	}
 
 
-	public void moveThings()
-	{
-      //calls the move( ) code in the objects
-		shark.move();
-
-	}
+    public void moveThings() {
+       shark.move();
+        fish.move();
+    }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
@@ -146,7 +148,9 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
-		g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
+	g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
+      g.drawImage(fishPic,fish.xpos,fish.ypos,fish.width,fish.height,null);
+        g.drawImage(backgroundPic, 0, 0, WIDTH, HEIGHT, null);
 
 		g.dispose();
 
