@@ -39,14 +39,17 @@ public class BasicGameApp implements Runnable {
    public JPanel panel;
    
 	public BufferStrategy bufferStrategy;
+    public Image backgroundPic;
 	public Image sharkPic;
     public Image fishPic;
-    public Image backgroundPic;
+    public Image plasticPic;
+
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
     private Shark shark;
     private Fish fish;
+    private Plastic plastic;
 
 
    // Main method definition
@@ -66,12 +69,14 @@ public class BasicGameApp implements Runnable {
       setUpGraphics();
        
       //variable and objects
-      //create (construct) the objects needed for the game and load up 
-		sharkPic = Toolkit.getDefaultToolkit().getImage("Shark.png"); //load the picture
-        fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png"); //load the picture
+      //create (construct) the objects needed for the game and load up
         backgroundPic = Toolkit.getDefaultToolkit().getImage("Background.png");
-        shark = new Shark(WIDTH / 2, HEIGHT / 2);
-        fish = new Fish(WIDTH / 2, HEIGHT / 2);
+		sharkPic = Toolkit.getDefaultToolkit().getImage("Shark.png"); //load the picture
+        fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png");//load the picture
+        plasticPic = Toolkit.getDefaultToolkit().getImage("Plastic.png");
+        shark = new Shark(50, 90);
+        fish = new Fish(160, 190);
+        plastic= new Plastic(WIDTH / 2, HEIGHT / 2);
 
 
 	}// BasicGameApp()
@@ -99,6 +104,7 @@ public class BasicGameApp implements Runnable {
     public void moveThings() {
        shark.move();
         fish.move();
+        plastic.move();
     }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
@@ -148,9 +154,11 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
+        g.drawImage(backgroundPic, 0, 0, WIDTH, HEIGHT, null);
 	g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
       g.drawImage(fishPic,fish.xpos,fish.ypos,fish.width,fish.height,null);
-        g.drawImage(backgroundPic, 0, 0, WIDTH, HEIGHT, null);
+        g.drawImage(plasticPic, plastic.xpos, plastic.ypos, plastic.width, plastic.height, null);
+
 
 		g.dispose();
 
