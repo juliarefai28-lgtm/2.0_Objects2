@@ -74,8 +74,8 @@ public class BasicGameApp implements Runnable {
 		sharkPic = Toolkit.getDefaultToolkit().getImage("Shark.png"); //load the picture
         fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png");//load the picture
         plasticPic = Toolkit.getDefaultToolkit().getImage("Plastic.png");
-        shark = new Shark(50, 90);
-        fish = new Fish(160, 190);
+        shark = new Shark(40, 20);
+        fish = new Fish(40, 20);
         plastic= new Plastic(WIDTH / 2, HEIGHT / 2);
 
 
@@ -93,7 +93,7 @@ public class BasicGameApp implements Runnable {
 
       //for the moment we will loop things forever.
 		while (true) {
-
+            crashing();
          moveThings();  //move all the game objects
          render();  // paint the graphics
          pause(20); // sleep for 10 ms
@@ -106,7 +106,27 @@ public class BasicGameApp implements Runnable {
         fish.move();
         plastic.move();
     }
-	
+
+    public void crashing() {
+
+        // fish vs shark (bounce)
+//        if (shark.isAlive &&fish.isAlive &&
+//                shark.hitbox.intersects(fish.hitbox)) {
+//
+//            System.out.println("Shark eats Fish!");
+//            shark.dx = -shark.dx;
+//            fish.dx = -fish.dx;
+//        }
+
+        // shark kills fish
+        if (shark.isAlive &&
+               shark.hitbox.intersects(fish.hitbox)) {
+
+            System.out.println("Fish died :(");
+            fish.isAlive = false;
+        }
+
+    }
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
    		//sleep
@@ -154,11 +174,13 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
+        if (fish.isAlive == true) {
+            g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
+        }
+
         g.drawImage(backgroundPic, 0, 0, WIDTH, HEIGHT, null);
 	g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
-      g.drawImage(fishPic,fish.xpos,fish.ypos,fish.width,fish.height,null);
         g.drawImage(plasticPic, plastic.xpos, plastic.ypos, plastic.width, plastic.height, null);
-
 
 		g.dispose();
 

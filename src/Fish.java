@@ -46,7 +46,7 @@ import java.awt.*;
             if (xpos >= 1000 - width) {//bounce of left wall
                 dx = -dx;
             }
-            if (ypos >= 700 - height) {//bounce of bottom wall
+            if (ypos >= 800 - height) {//bounce of bottom wall
                 dy = -dy;
             }
 

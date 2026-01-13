@@ -28,7 +28,7 @@ import java.awt.*;
         public Plastic (int pXpos, int pYpos) {
             xpos = pXpos;
             ypos = pYpos;
-            dx = 10;
+            dx = 5;
             dy = 4;
             width = 60;
             height = 60;
@@ -36,23 +36,21 @@ import java.awt.*;
             hitbox= new Rectangle(xpos,ypos,width,height);
         } // constructor
 
-        //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
+        //The move method.Everytime this is run (or "called") the hero's x position and y position change by dx and dy
         public void move() {
+            if(xpos>=1000){//wrap when hits right wall- dx=5 and yx=0
+                xpos = 0-width;
+            }
+            if(ypos<=0){//wrap when it hits the top wall- dx= 0 and yx=5
+                ypos=699;
+            }
+            if(ypos>=700) {//wrap when it hits the bottom wall
+                ypos=1;
+            }
 
             xpos = xpos + dx;
             ypos = ypos + dy;
-            if (xpos >= 1000 - width) {//bounce of left wall
-                dx = -dx;
-            }
-            if (ypos >= 700 - height) {//bounce of bottom wall
-                dy = -dy;
-            }
 
-            if (xpos<0){dx=-dx;}
-            if(ypos<0){dy=-dy;}
-
-            hitbox= new Rectangle(xpos,ypos,width,height);
         }
-
     }
 
