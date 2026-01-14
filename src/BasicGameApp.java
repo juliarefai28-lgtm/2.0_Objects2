@@ -75,7 +75,7 @@ public class BasicGameApp implements Runnable {
         fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png");//load the picture
         plasticPic = Toolkit.getDefaultToolkit().getImage("Plastic.png");
         shark = new Shark(40, 20);
-        fish = new Fish(40, 20);
+        fish = new Fish(200, 200);
         plastic= new Plastic(WIDTH / 2, HEIGHT / 2);
 
 
@@ -125,6 +125,12 @@ public class BasicGameApp implements Runnable {
             System.out.println("Fish died :(");
             fish.isAlive = false;
         }
+        // Plastic kills shark
+        if (shark.isAlive && plastic.isAlive && plastic.hitbox.intersects(shark.hitbox)) {
+
+            System.out.println("Shark dissapeared");
+            shark.isAlive = false;
+        }
 
     }
    //Pauses or sleeps the computer for the amount specified in milliseconds
@@ -173,13 +179,18 @@ public class BasicGameApp implements Runnable {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
-      //draw the image of the astronaut
+        //Draw the background Pic
+        g. drawImage(backgroundPic,0,0,WIDTH,HEIGHT, null);
+
+      //draw the image of the fish
         if (fish.isAlive == true) {
             g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
         }
-
-        g.drawImage(backgroundPic, 0, 0, WIDTH, HEIGHT, null);
-	g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
+        //Draw the image of the shark
+        if (shark.isAlive == true) {
+            g.drawImage(sharkPic, shark.xpos, shark.ypos, shark.width, shark.height, null);
+        }
+        //Draw image of plastic
         g.drawImage(plasticPic, plastic.xpos, plastic.ypos, plastic.width, plastic.height, null);
 
 		g.dispose();

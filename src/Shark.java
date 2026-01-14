@@ -52,6 +52,7 @@ public class Shark {
             if(ypos<0){dy=-dy;}
 
             hitbox= new Rectangle(xpos,ypos,width,height);
+            hitbox.setBounds(xpos,ypos,width,height);
         }
 
     }

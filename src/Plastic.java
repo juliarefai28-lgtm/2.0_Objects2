@@ -51,6 +51,8 @@ import java.awt.*;
             xpos = xpos + dx;
             ypos = ypos + dy;
 
+            hitbox= new Rectangle(xpos,ypos,width,height);
+            hitbox.setBounds(xpos,ypos,width,height);
         }
     }
 
