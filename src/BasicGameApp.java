@@ -1,8 +1,4 @@
-//Basic Game Application
-//Version 2
-// Basic Object, Image, Movement
-// Astronaut moves to the right.
-// Threaded
+
 
 //K. Chun 8/2018
 
@@ -109,15 +105,6 @@ public class BasicGameApp implements Runnable {
 
     public void crashing() {
 
-        // fish vs shark (bounce)
-//        if (shark.isAlive &&fish.isAlive &&
-//                shark.hitbox.intersects(fish.hitbox)) {
-//
-//            System.out.println("Shark eats Fish!");
-//            shark.dx = -shark.dx;
-//            fish.dx = -fish.dx;
-//        }
-
         // shark kills fish
         if (shark.isAlive &&
                shark.hitbox.intersects(fish.hitbox)) {
@@ -126,7 +113,7 @@ public class BasicGameApp implements Runnable {
             fish.isAlive = false;
         }
         // Plastic kills shark
-        if (shark.isAlive && plastic.isAlive && plastic.hitbox.intersects(shark.hitbox)) {
+        if (plastic.hitbox.intersects(shark.hitbox)) {
 
             System.out.println("Shark dissapeared");
             shark.isAlive = false;
