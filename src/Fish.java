@@ -43,15 +43,15 @@ import java.awt.*;
 
             xpos = xpos + dx;
             ypos = ypos + dy;
-            if (xpos >= 1000 - width) {//bounce of left wall
+            if (xpos >= 1000 - width) {//bounce of right wall
                 dx = -dx;
             }
-            if (ypos >= 800 - height) {//bounce of bottom wall
+            if (ypos >= 700 - height) {//bounce of bottom wall
                 dy = -dy;
             }
 
-            if (xpos<0){dx=-dx;}
-            if(ypos<0){dy=-dy;}
+            if (xpos<0){dx=-dx;}// Bounce of Left wall
+            if(ypos<0){dy=-dy;}//Bounce of top wall
 
             hitbox= new Rectangle(xpos,ypos,width,height);
             hitbox.setBounds(xpos,ypos,width,height);

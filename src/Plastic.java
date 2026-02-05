@@ -34,17 +34,17 @@ import java.awt.*;
             height = 60;
             isAlive = true;
             hitbox= new Rectangle(xpos,ypos,width,height);
-        } // constructor
+        }
 
         //The move method.Everytime this is run (or "called") the hero's x position and y position change by dx and dy
         public void move() {
-            if(xpos>=1000){//wrap when hits right wall- dx=5 and yx=0
+            if(xpos>=1000){//wraps around screen horizontally off the right edge
                 xpos = 0-width;
             }
-            if(ypos<=0){//wrap when it hits the top wall- dx= 0 and yx=5
+            if(ypos<=0){//wraps around screen vertically off the top edge
                 ypos=699;
             }
-            if(ypos>=700) {//wrap when it hits the bottom wall
+            if(ypos>=700) {// wraps around screen vertically off the bottom edge
                 ypos=1;
             }
 
