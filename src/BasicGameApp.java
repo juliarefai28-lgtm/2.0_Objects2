@@ -24,6 +24,7 @@ public class BasicGameApp implements Runnable {
 	public Image sharkPic;
     public Image fishPic;
     public Image plasticPic;
+    public Image endingPic;
 
    //Game objects
     private Shark shark;
@@ -48,6 +49,7 @@ public class BasicGameApp implements Runnable {
 		sharkPic = Toolkit.getDefaultToolkit().getImage("Shark.png"); //load the picture
         fishPic = Toolkit.getDefaultToolkit().getImage("Fish.png");//load the picture
         plasticPic = Toolkit.getDefaultToolkit().getImage("Plastic.png");
+        endingPic= Toolkit.getDefaultToolkit().getImage("Ending.png");
 
         //Creates objects in starting positions
         shark = new Shark(40, 20);
@@ -77,6 +79,7 @@ public class BasicGameApp implements Runnable {
        shark.move();
         fish.move();
         plastic.move();
+        GameOver();
     }
     // Method
     //Checks for collisions
@@ -155,8 +158,18 @@ public class BasicGameApp implements Runnable {
         //Draw image of plastic
         g.drawImage(plasticPic, plastic.xpos, plastic.ypos, plastic.width, plastic.height, null);
 
+        //Draw image of ending Pic
+
+
+
 		g.dispose();
 
 		bufferStrategy.show();
 	}
+    public void GameOver(){
+        if(shark.width<= 20 && fish.isAlive==false){
+            System.out.println("All animals are dead!");
+            endingPic= Toolkit.getDefaultToolkit().getImage("Ending.png");
+        }
+    }
 }

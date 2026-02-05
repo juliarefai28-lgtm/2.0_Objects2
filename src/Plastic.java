@@ -54,5 +54,6 @@ import java.awt.*;
             hitbox= new Rectangle(xpos,ypos,width,height);
             hitbox.setBounds(xpos,ypos,width,height);
         }
+
     }
 
